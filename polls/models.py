@@ -17,6 +17,10 @@ class Question(models.Model):
         最近的意思是当前时间的一天前到现在
         """
         return timezone.now() >= self.pub_date >= timezone.now() - datetime.timedelta(days=1)
+    #  优化列表页显示
+    was_published_recently.admin_order_field = 'pub_date'
+    was_published_recently.boolean = True
+    was_published_recently.short_description = 'Publish Recently'
 
 
 class Choice(models.Model):
